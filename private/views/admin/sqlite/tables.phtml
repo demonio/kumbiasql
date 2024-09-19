@@ -1,0 +1,20 @@
+
+<table>
+    <caption>
+        Tables
+        <a href="/admin/sqlite/add"><?=_img::icon('md/add')?></a></caption>
+    <thead>
+        <tr>
+            <th>Table</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($tables as $table): ?>
+            <tr>
+                <td>
+                    <a href="/admin/sqlite/<?=$table->name?>"><?=$table->name?></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    <tbody>
+</table>

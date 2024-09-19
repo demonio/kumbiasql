@@ -1,0 +1,78 @@
+
+<form action="/admin/sqlite/field/<?=$table?>/<?=$field?>" method="post">
+    <div>
+        <label>
+            <span>Field name</span>
+            <input type="text" name="name" placeholder value="<?=$field?>">
+            <input type="hidden" name="name_old" value="<?=$field?>">
+        </label>
+        <label>
+            <span>Type</span>
+            <select name="type">
+                <?php foreach (['TEXT', 'REAL', 'NUMERIC', 'INTEGER', 'BLOB'] as $val): ?>
+                    <option value="<?=$val?>"><?=$val?></option>
+                <?php endforeach; ?>
+            </select>
+        </label>
+        <label>
+            <span>Null</span>
+            <select name="null">
+                <?php foreach (['', 'NOT NULL'] as $val): ?>
+                    <option value="<?=$val?>"><?=$val?></option>
+                <?php endforeach; ?>
+            </select>
+        </label>
+    </div>
+    <div>
+        <label>
+            <span>Key</span>
+            <select name="key">
+                <?php foreach (['', 'PRIMARY KEY', 'PRIMARY KEY AUTOINCREMENT', 'UNIQUE'] as $val): ?>
+                    <option value="<?=$val?>"><?=$val?></option>
+                <?php endforeach; ?>
+            </select>
+        </label>
+        <label>
+            <span>Foreign key</span>
+            <input type="text" name="foreign_key" placeholder>
+        </label>
+    </div>
+    <div>
+        <label>
+            <span>Index name</span>
+            <input type="text" name="index" placeholder>
+        </label>
+        <label>
+            <span>Default</span>
+            <input list="default" name="default">
+            <datalist id="default">
+                <?php foreach (['NULL', 'CURRENT_DATE', 'CURRENT_TIME', 'CURRENT_TIMESTAMP', '0', '1'] as $val): ?>
+                    <option value="<?=$val?>"><?=$val?></option>
+                <?php endforeach; ?>
+            </datalist>
+        </label>
+    </div>
+    <div>
+        <label>
+            <span>Check</span>
+            <input type="text" name="check" placeholder>
+            <i>salary > 0<br>LENGTH(column) > 3</i>
+        </label>
+        <label>
+            <span>Collate</span>
+            <select name="collate">
+                <?php foreach (['', 'BINARY', 'NOCASE', 'RTRIM'] as $val): ?>
+                    <option value="<?=$val?>"><?=$val?></option>
+                <?php endforeach; ?>
+            </select>
+        </label>
+    </div>
+    <footer>
+        <button type="submit" data-color="red" name="action" value="delete"><?=_img::icon('md/remove')?> Delete</button>
+        <button type="submit" data-color="green" name="action" value="create"><?=_img::icon('md/add')?> Create</button>
+        <button type="submit" data-color="yellow" name="action" value="update"><?=_img::icon('md/save')?> Update</button>
+    </footer>
+</form>
+
+<?php
+include APP_PATH . 'views/admin/sqlite/fields.phtml';

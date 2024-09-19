@@ -1,0 +1,19 @@
+
+<form action="/admin/sqlite/edit/<?=$table?>/<?=$row->id?>" method="post">
+    <div>
+        <?php $c=1; foreach ($row as $field=>$value): ?>
+            <label>
+                <span><?=$field?></span>
+                <input type="text" name="<?=$field?>" placeholder value="<?=$value?>">
+            </label>
+            <?php if ($c % 2 == 0): ?>
+                </div><div>
+            <?php endif; ?>
+        <?php ++$c; endforeach; ?>
+    </div>
+    <div>
+        <button type="submit" data-color="red" name="action" value="delete"><?=_img::icon('md/remove')?> Delete</button>
+        <button type="submit" data-color="green" name="action" value="create"><?=_img::icon('md/add')?> Create</button>
+        <button type="submit" data-color="yellow" name="action" value="update"><?=_img::icon('md/save')?> Update</button>
+    </div>
+</form>

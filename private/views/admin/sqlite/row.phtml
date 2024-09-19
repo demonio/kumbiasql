@@ -1,0 +1,12 @@
+
+<div>
+    <?php $c=1; foreach ($row as $field=>$value): ?>
+        <label>
+            <span><?=$field?></span>
+            <input type="text" name="<?=$field?>" placeholder value="<?=h($value)?>">
+        </label>
+        <?php if ($c % 2 == 0): ?>
+            </div><div>
+        <?php endif; ?>
+    <?php ++$c; endforeach; ?>
+</div>

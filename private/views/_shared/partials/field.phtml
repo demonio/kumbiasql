@@ -1,0 +1,19 @@
+<?php
+$aclass = 'edit-field-' . _str::aid();
+?>
+<span class="<?=$aclass?>">
+    <?=h($value)?> 
+    <a href="#edit" data-toggle_class="hide, .<?=$aclass?>"><?=_img::icon('md/edit')?></a>
+</span>
+
+<form action="<?=h($action)?>" class="<?=$aclass?> hide" method="post">
+    <div>
+        <a role="button" data-color="red" href="<?=h($href)?>"><?=_img::icon('md/delete_forever')?></a>
+        <label>
+            <label><?=h($field)?></label>
+            <input type="text" name="<?=h($field)?>" placeholder value="<?=h($value)?>">
+        </label>                
+        <button type="button" data-toggle_class="hide, .<?=$aclass?>"><?=_img::icon('md/close')?></button>
+        <button type="submit"><?=_img::icon('md/check')?></button>
+    </div>
+</form>

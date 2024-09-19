@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" data-color="blue" id="important">
+	<head>
+		<meta charset=<?=APP_CHARSET?>>
+		<title>Koot Fast App</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://kumbiacss.com/css/kumbia.min.css">
+	</head>
+	<body>
+		<nav>
+			<a href=""><?=Html::img('logos/kumbiasql.svg', 'Logo de KumbiaSQL')?></a>
+		</nav>
+
+		<main>
+			<?php View::partial('breadcrumbs'); ?>
+			<?php View::content(); ?>
+		</main>
+
+		<div class="ajax show"></div>
+
+		<script src="/javascript/admin.min.js?<?=filemtime('javascript/admin.min.js')?>"></script>
+	</body>
+</html>

@@ -1,0 +1,10 @@
+<div>
+    <?php
+    $crumbs = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
+    $path = '/';
+    ?><a role="button" href="/">/</a><?php
+    foreach ($crumbs as $crumb):
+        $path .= "$crumb/";
+        ?><a role="button" href="<?=rtrim($path, '/')?>"><?=$crumb?></a><?php
+    endforeach; ?>
+</div>

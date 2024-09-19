@@ -1,0 +1,26 @@
+
+<table>
+    <caption>
+        <a href="/admin/sqlite/edit/<?=$table?>"><?=$table?> <?=_img::icon('md/edit')?></a>
+    </caption>
+    <thead>
+        <tr>
+            <th></th>
+            <?php foreach ($rows[0] as $col=>$val): ?>
+                <th><?=$col?></th>
+            <?php endforeach; ?>
+            <th><a href="/admin/sqlite/add/<?=$table?>"><?=_img::icon('md/add')?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($rows as $row): ?>
+            <tr>
+                <td><a href="/admin/sqlite/edit/<?=$table?>/<?=$row->id?>"><?=_img::icon('md/edit')?></a></td>
+                <?php foreach ($row as $col=>$val): ?>
+                    <td><?=$val?></td>
+                <?php endforeach; ?>
+                <td></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

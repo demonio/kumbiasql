@@ -1,0 +1,1 @@
+console.log('admin.min.js is loaded');
