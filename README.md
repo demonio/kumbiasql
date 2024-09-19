@@ -15,7 +15,24 @@ Antes de este proyecto, no tenía experiencia con SQLite. Aquí algunos de los a
 
 ### Deuda técnica
 - Aún no he implementado la creación de *foreign keys*, ya que SQLite solo permite crearlas durante la creación de la tabla, no al añadir campos, al menos no de forma sencilla.
-- Es probable que divida las acciones del controlador `sqlite` si vuelvo a trabajar en este tema.
+
+## Imágenes
+A continuación, se presentan algunas capturas de pantalla que muestran las diferentes funcionalidades:
+
+1. **Ver las tablas creadas**
+   ![Ver las tablas creadas](https://kumbiasql.com/img/upload/tables.png)
+
+2. **Crear, renombrar o borrar una tabla**
+   ![Crear, renombrar o borrar una tabla](https://kumbiasql.com/img/upload/table.png)
+
+3. **Crear, renombrar o borrar campos en una tabla**
+   ![Crear, renombrar o borrar campos en una tabla](https://kumbiasql.com/img/upload/field.png)
+
+4. **Ver los datos de una tabla**
+   ![Ver los datos de una tabla](https://kumbiasql.com/img/upload/rows.png)
+
+5. **Editar una fila de datos de una tabla**
+   ![Editar una fila de datos de una tabla](https://kumbiasql.com/img/upload/row.png)
 
 ### Licencia
 [WTFPL](http://www.wtfpl.net/)

@@ -110,7 +110,7 @@ class LiteRecord extends ORM
 			? self::all($this->sql)
 			: self::all($this->sql, $this->vals);
 		if ( ! $rows) {
-			return [self::cols()];
+			return [];
 		}
 		if ($by) {
 			$rows = self::arrayBy($rows, $by);

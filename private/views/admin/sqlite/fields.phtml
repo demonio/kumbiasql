@@ -1,24 +1,26 @@
 
-<table>
-    <caption><?=$table?></caption>
-    <thead>
-        <tr>
-            <th></th>
-            <?php foreach ($rows[0] as $col=>$val): ?>
-                <th><?=$col?></th>
-            <?php endforeach; ?>
-            <th><a href="/admin/sqlite/add/<?=$table?>"><?=_img::icon('md/add')?></th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($rows as $row): ?>
+<?php if ($rows): ?>
+    <table>
+        <caption><?=$table?></caption>
+        <thead>
             <tr>
-                <td><a href="/admin/sqlite/field/<?=$table?>/<?=$row->name?>"><?=_img::icon('md/edit')?></a></td>
-                <?php foreach ($row as $col=>$val): ?>
-                    <td><?=$val?></td>
+                <th></th>
+                <?php foreach ($rows[0] as $col=>$val): ?>
+                    <th><?=$col?></th>
                 <?php endforeach; ?>
-                <td></td>
+                <th><a href="/admin/sqlite/add/<?=$table?>"><?=_img::icon('md/add')?></th>
             </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <?php foreach ($rows as $row): ?>
+                <tr>
+                    <td><a href="/admin/sqlite/field/<?=$table?>/<?=$row->name?>"><?=_img::icon('md/edit')?></a></td>
+                    <?php foreach ($row as $col=>$val): ?>
+                        <td><?=$val?></td>
+                    <?php endforeach; ?>
+                    <td></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>

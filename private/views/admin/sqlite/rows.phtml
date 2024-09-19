@@ -1,26 +1,33 @@
 
 <table>
     <caption>
-        <a href="/admin/sqlite/edit/<?=$table?>"><?=$table?> <?=_img::icon('md/edit')?></a>
+        <a href="/admin/sqlite/table/<?=$table?>"><?=$table?> <?=_img::icon('md/edit')?></a>
     </caption>
     <thead>
         <tr>
             <th></th>
-            <?php foreach ($rows[0] as $col=>$val): ?>
+            <?php foreach ($cols as $col=>$val): ?>
                 <th><?=$col?></th>
             <?php endforeach; ?>
-            <th><a href="/admin/sqlite/add/<?=$table?>"><?=_img::icon('md/add')?></th>
+            <th><a href="/admin/sqlite/field/<?=$table?>"><?=_img::icon('md/add')?></th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($rows as $row): ?>
             <tr>
-                <td><a href="/admin/sqlite/edit/<?=$table?>/<?=$row->id?>"><?=_img::icon('md/edit')?></a></td>
+                <td><a href="/admin/sqlite/row/<?=$table?>/<?=$row->id?>"><?=_img::icon('md/edit')?></a></td>
                 <?php foreach ($row as $col=>$val): ?>
                     <td><?=$val?></td>
                 <?php endforeach; ?>
                 <td></td>
             </tr>
         <?php endforeach; ?>
+        <tr>
+            <td><a href="/admin/sqlite/row/<?=$table?>"><?=_img::icon('md/add')?></a></td>
+            <?php foreach ($cols as $col=>$val): ?>
+                <td></td>
+            <?php endforeach; ?>
+            <td></td>
+        </tr>
     </tbody>
 </table>

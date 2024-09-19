@@ -6,7 +6,6 @@ class SqliteController extends AdminController
     #
     public function __call($name, $params)
     {
-        #_var::die([$name, $params]);
         $this->index($name, ...$params);
     }
 
@@ -15,16 +14,14 @@ class SqliteController extends AdminController
     {
         if ( ! $table) {
             $this->tables = (new LiteRecord)->tables();
-            #_var::die($this->tables);
             return View::select('tables');
         }
         if ($id) {
             $this->row = (new $table)->get($id);
-            #_var::die($this->row);
             return View::select('row');
         }
+        $this->cols = (new LiteRecord)->table($table)->cols();
         $this->rows = (new LiteRecord)->table($table)->rows();
-        #_var::die($this->rows);
         $this->table = $table;
         View::select('rows');
     }
@@ -36,11 +33,26 @@ class SqliteController extends AdminController
             (new LiteRecord)->table(Input::post('name'))->addTable();
             return Redirect::to('/admin/sqlite/' . Input::post('name'));
         }
+        else if (Input::post('action') == 'update') {
+            (new LiteRecord)->table($table)->renameTable(Input::post('name'));
+            return Redirect::to('/admin/sqlite/' . Input::post('name'));
+        }
+        else if (Input::post('action') == 'delete') {
+            (new LiteRecord)->table($table)->deleteTable();
+            return Redirect::to('/admin/sqlite');
+        }
+
+        $this->rows = (new LiteRecord)->table($table)->cols('all');
+        $this->table = $table;
     }
 
     #
-    public function field($table, $field=null)
+    public function field($table=null, $field=null)
     {
+        if ( ! $table) {
+            return Redirect::to('/admin/sqlite');
+        }
+
         if (Input::post('action') == 'create') {
             (new LiteRecord)->table($table)->addField(Input::post());
         }
@@ -58,58 +70,28 @@ class SqliteController extends AdminController
     }
 
     #
-    public function edit($table=null, $id=null)
+    public function row($table=null, $id=null)
     {
         if ( ! $table) {
             return Redirect::to('/admin/sqlite');
         }
-        $this->table = $table;
-
-        if ($id) {
-            if (Input::post('action') == 'create') {
-                (new LiteRecord)->table($table)->add(Input::post());
-            }
-            else if (Input::post('action') == 'update') {
-                (new LiteRecord)->table($table)->upd(Input::post());
-            }
-            else if (Input::post('action') == 'delete') {
-                (new LiteRecord)->table($table)->del($id);
-            }
-            if (Input::post('action')) {
-                return Redirect::to("/admin/sqlite/$table");
-            }
-
-            $this->row = (new LiteRecord)->table($table)->row('id=?', $id);
-            return View::select('edit_row');
-        }
 
         if (Input::post('action') == 'create') {
-            (new LiteRecord)->table(Input::post('name'))->addTable();
-            return Redirect::to('/admin/sqlite/' . Input::post('name'));
+            (new LiteRecord)->table($table)->add(Input::post());
         }
         else if (Input::post('action') == 'update') {
-            (new LiteRecord)->table($table)->renameTable(Input::post('name'));
-            return Redirect::to('/admin/sqlite/' . Input::post('name'));
+            (new LiteRecord)->table($table)->upd(Input::post());
         }
         else if (Input::post('action') == 'delete') {
-            (new LiteRecord)->table($table)->deleteTable();
-            return Redirect::to('/admin/sqlite');
+            (new LiteRecord)->table($table)->del($id);
+        }
+        if (Input::post('action')) {
+            return Redirect::to("/admin/sqlite/$table");
         }
 
-        $this->rows = (new LiteRecord)->table($table)->cols('all');
-        return View::select('table');
-    }
-
-    #
-    public function edit_field($table=null, $field=null)
-    {
-        (new LiteRecord)->table(Input::post('name'))->addTable();
-        return Redirect::to('/admin/sqlite/' . Input::post('name'));
-    }
-
-    #
-    public function test_($table)
-    {
-        (new LiteRecord)->table($table)->test();
+        $this->cols = (new LiteRecord)->table($table)->cols();
+        $this->row = (new LiteRecord)->table($table)->row('id=?', $id);
+        $this->rows = (new LiteRecord)->table($table)->rows();
+        $this->table = $table;
     }
 }

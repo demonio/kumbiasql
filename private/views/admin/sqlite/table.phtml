@@ -1,5 +1,5 @@
 
-<form action="/admin/sqlite/edit/<?=$table?>" method="post">
+<form action="/admin/sqlite/table/<?=$table?>" method="post">
     <fieldset>
         <header>
         </header>
@@ -10,9 +10,13 @@
             </label>
         </section>
         <footer>
-            <button type="submit" data-color="red" name="action" value="delete"><?=_img::icon('md/remove')?> Delete</button>
+            <?php if ($table): ?>
+                <button type="submit" data-color="red" name="action" value="delete"><?=_img::icon('md/remove')?> Delete</button>
+            <?php endif; ?>
             <button type="submit" data-color="green" name="action" value="create"><?=_img::icon('md/add')?> Create</button>
-            <button type="submit" data-color="yellow" name="action" value="update"><?=_img::icon('md/save')?> Update</button>
+            <?php if ($table): ?>
+                <button type="submit" data-color="yellow" name="action" value="update"><?=_img::icon('md/save')?> Update</button>
+            <?php endif; ?>
         </footer>
     </fieldset>
 </form>
